@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <form action="" method="post" id="register_form" [formGroup]="registerForm">
+    <label>
+      <span>Nome:</span>
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="objectData.name"
+        formControlName="name"
+        required
+      />
+      <small *ngIf="getFieldError('name')">{{ getFieldError("name") }}</small>
+    </label>
+
+    <label>
+      <span>Celular:</span>
+      <input
+        type="text"
+        name="cell"
+        [(ngModel)]="objectData.cell"
+        formControlName="cell"
+        mask="(00) 00000-0000"
+        [validation]="true"
+        required
+      />
+      <small *ngIf="getFieldError('cell')">{{ getFieldError("cell") }}</small>
+    </label>
+
+    <label>
+      <span>Senha:</span>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="objectData.password"
+        formControlName="password"
+        required
+      />
+      <small *ngIf="getFieldError('password')">{{
+        getFieldError("password")
+      }}</small>
+    </label>
+
+    <label>
+      <span>Foto de perfil:</span>
+      <input
+        type="file"
+        name="avatar"
+        [(ngModel)]="objectData.avatar"
+        formControlName="avatar"
+      />
+    </label>
+
+    <button type="submit" (click)="handleSubmit()">Cadastrar</button>
+  </form>
+</div>
