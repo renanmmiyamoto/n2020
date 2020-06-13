@@ -17,6 +17,20 @@
       </label>
 
       <label>
+        <span>Sobrenome:</span>
+        <input
+          type="text"
+          name="lastname"
+          [(ngModel)]="objectData.lastname"
+          formControlName="lastname"
+          required
+        />
+        <small *ngIf="getFieldError('lastname')">{{
+          getFieldError("lastname")
+        }}</small>
+      </label>
+
+      <!-- <label>
         <span>Celular:</span>
         <input
           type="text"
@@ -28,7 +42,7 @@
           required
         />
         <small *ngIf="getFieldError('cell')">{{ getFieldError("cell") }}</small>
-      </label>
+      </label> -->
 
       <label>
         <span>Senha:</span>

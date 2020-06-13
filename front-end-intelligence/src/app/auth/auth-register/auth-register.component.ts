@@ -17,7 +17,7 @@ export class AuthRegisterComponent implements OnInit {
   constructor(private authService: RegisterService, private router: Router) {
     this.registerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      cell: new FormControl('', [Validators.required]),
+      lastname: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       confirm_password: new FormControl('', [Validators.required]),
     });

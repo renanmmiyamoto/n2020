@@ -1,0 +1,86 @@
+@import "../../assets/styles/colors.scss";
+
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  padding: 50px 0;
+  margin: 0 auto;
+
+  .tabs {
+    width: 20%;
+    margin: 0 4px 0 0;
+
+    a {
+      background: #fff;
+      display: block;
+      width: 100%;
+      font-size: 20px;
+      color: transparentize($color-green, 0.5);
+      padding: 15px 20px 15px 25px;
+      margin-bottom: 4px;
+      transition: 0.3s;
+
+      &.current {
+        font-size: 21px;
+        color: $color-green;
+        font-weight: 500;
+        padding-left: 20px;
+        border-left: 5px solid $color-green;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &:hover:not(.current) {
+        background: transparentize($color-green, 0.7);
+      }
+    }
+  }
+
+  .tab-content {
+    background: #fff;
+    width: 80%;
+    padding: 30px;
+
+    .hobbies {
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-start;
+
+      a {
+        background: #f5f5f5;
+        display: block;
+        width: 140px;
+        text-align: center;
+        padding: 15px 20px;
+        margin-right: 10px;
+        border-radius: 6px;
+
+        img {
+          display: block;
+          margin: 0 auto;
+        }
+
+        span {
+          display: block;
+          width: 100%;
+          font-size: 16px;
+          color: $color-green;
+          margin: 10px 0 0;
+        }
+
+        &.current {
+          background: transparentize($color-green, 0.5);
+
+          span {
+            color: #fff;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

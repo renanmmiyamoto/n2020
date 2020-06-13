@@ -1,4 +1,4 @@
-@import "../../../assets//styles/colors.scss";
+@import "../../../assets/styles/colors.scss";
 
 .container {
   width: 100vw;
@@ -39,6 +39,10 @@ form {
       font-size: 16px;
       color: rgba(0, 0, 0, 0.5);
       margin-top: 10px;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     & + label {
@@ -53,6 +57,10 @@ form {
 
     a {
       color: $color-green;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
