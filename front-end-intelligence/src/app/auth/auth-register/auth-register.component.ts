@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'app-auth-register',
@@ -9,37 +12,38 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class AuthRegisterComponent implements OnInit {
   public registerForm: FormGroup;
   public objectData: any = {};
+  public disabledForm: boolean = true;
 
-  constructor() {
+  constructor(private authService: RegisterService, private router: Router) {
     this.registerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       cell: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
-      avatar: new FormControl('', [Validators.required]),
+      confirm_password: new FormControl('', [Validators.required]),
     });
   }
 
   ngOnInit(): void {}
 
   getFieldError(formControlName) {
-    // Recupera o campo pelo seu nome
     let control = this.registerForm.get(formControlName);
 
-    // Retorna false caso o campo não foi encontrado
     if (!control) return false;
 
-    // Retorna false caso campo ainda não sofreu interação
     if (control.untouched) return false;
 
-    // Retorna false caso campo está válido
+    if (formControlName === 'confirm_password')
+      if (control.value !== this.registerForm.get('password').value) {
+        control.setErrors({});
+        return 'As senhas não correspondem';
+      } else {
+        control.setErrors(null);
+      }
+
     if (control.valid) return false;
 
-    // Retorna mensagem para caso validação de required
-    if (control.hasError('required')) {
-      return 'Este campo é obrigatório.';
-    }
+    if (control.hasError('required')) return 'Este campo é obrigatório.';
 
-    // Retorna mensagem para caso validação de minLength
     if (control.hasError('minlength')) {
       let minlength = control.getError('minlength');
       return (
@@ -49,33 +53,27 @@ export class AuthRegisterComponent implements OnInit {
       );
     }
 
-    // Caso campo é inválido mas erro não foi capturado acima
     return 'Campo inválido.';
   }
 
-  handleSubmit(): void {
-    console.log('objeto', this.objectData);
+  async handleRegisterUser() {
+    if (!this.registerForm.valid) {
+      alert('Preencha os campos corretamente.');
+      return;
+    }
 
-    console.log('dados', this.registerForm.value);
+    let formValue = this.registerForm.value;
 
-    // Salvando os dados em uma variável
-    this.objectData = this.registerForm.value;
+    try {
+      let res = await this.authService.register(formValue);
 
-    // Exibindo se formulário é valido
-    console.log('Válido?', this.registerForm.valid);
+      console.log('res', res);
+    } catch (error) {
+      console.log('error', error);
 
-    // Exibindo os erros no formulário
-    console.log('Erros', this.registerForm.errors);
-
-    // Exibindo o valor de um campo
-    console.log('Valor do campo name', this.registerForm.get('name').value);
-
-    // Exibindo se um campo é válido
-    console.log('Campo name é válido?', this.registerForm.get('name').valid);
-
-    // Exibindo erros de um campo
-    console.log('Erros no campo name', this.registerForm.get('name').errors);
-
-    console.log('Erros no campo cell', this.registerForm.get('cell').errors);
+      alert(
+        'Não foi possível efeturar login. Verifique os dados e tente novamente.'
+      );
+    }
   }
 }

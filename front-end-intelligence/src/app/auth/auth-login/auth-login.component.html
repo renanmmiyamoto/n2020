@@ -1,18 +1,24 @@
-<div class="wrapper">
-  <form action="" method="post">
-    <label>
-      <span>Celular:</span>
-      <input type="text" name="cell" required />
-    </label>
+<div class="container">
+  <div class="wrapper">
+    <img src="../../../assets/images/logo.svg" alt="" />
 
-    <label>
-      <span>Senha:</span>
-      <input type="password" name="password" required />
-    </label>
+    <h1>Entrar</h1>
 
-    <button type="submit">Entrar</button>
+    <form action="" method="post">
+      <label>
+        <span>Seu telefone:</span>
+        <input type="text" name="cell" required />
+      </label>
 
-    <a href="#">Esqueceu sua senha?</a>
-    <a href="/register">Criar minha conta</a>
-  </form>
+      <label>
+        <span>Sua senha:</span>
+        <input type="password" name="password" required />
+        <a href="#">Esqueci a senha</a>
+      </label>
+
+      <button type="submit">Entrar</button>
+
+      <p>Não tem uma conta? <a href="/register">clique aqui</a></p>
+    </form>
+  </div>
 </div>

@@ -5,6 +5,7 @@ import { NgxMaskModule } from 'ngx-mask';
 
 import { AuthLoginComponent } from './auth-login/auth-login.component';
 import { AuthRegisterComponent } from './auth-register/auth-register.component';
+import { RegisterService } from '../services/register.service';
 
 @NgModule({
   declarations: [AuthLoginComponent, AuthRegisterComponent],
@@ -14,5 +15,6 @@ import { AuthRegisterComponent } from './auth-register/auth-register.component';
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
   ],
+  providers: [RegisterService],
 })
 export class AuthModule {}

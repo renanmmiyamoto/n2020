@@ -1,37 +1,45 @@
+@import "../../../assets//styles/colors.scss";
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .wrapper {
   width: 90%;
-  max-width: 500px;
+  max-width: 400px;
   margin: auto;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0 40px;
 }
 
 form {
   width: 100%;
-  padding-top: 100px;
 
   label {
-    display: block;
-
-    & + label {
-      margin-top: 25px;
-    }
-
     span {
       display: block;
       font-size: 20px;
-      margin: 0 0 5px;
-    }
-
-    input {
-      display: block;
-      width: 100%;
-      font-size: 18px;
-      padding: 10px 20px;
-      border: 1px solid #666;
-      border-radius: 7px;
+      margin: 0 0 10px;
     }
 
     small {
       color: #c00;
+    }
+
+    & + label {
+      margin-top: 20px;
     }
   }
 
@@ -39,21 +47,5 @@ form {
     position: absolute;
     content: "";
     transition: all 0.5s;
-  }
-
-  button {
-    background: #fff;
-    position: relative;
-    display: block;
-    width: 200px;
-    font-size: 18px;
-    color: #333;
-    text-transform: uppercase;
-    padding: 12px 20px 10px;
-    margin: 30px auto 0;
-    border: 1px solid #666;
-    border-radius: 7px;
-    transition: 0.3s;
-    cursor: pointer;
   }
 }
