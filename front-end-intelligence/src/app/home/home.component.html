@@ -1,37 +1,146 @@
-<sections class="home">
+<section class="home">
   <div class="wrapper">
     <nav class="tabs">
-      <a href="#" class="current">
+      <a href="#" class="current" (click)="changeTab(true)">
         Dicas
       </a>
-      <a href="#">
+      <a href="#" (click)="changeTab(false)">
         Dúvidas
       </a>
     </nav>
 
     <article class="tab-content">
-      <nav class="hobbies">
-        <a href="#" class="current">
-          <img src="../../assets/images/checklist.svg" alt="All Options" />
-          <span>Todas</span>
-        </a>
-        <a href="#">
-          <img src="../../assets/images/checklist.svg" alt="All Options" />
-          <span>Jardinagem</span>
-        </a>
-        <a href="#">
-          <img src="../../assets/images/checklist.svg" alt="All Options" />
-          <span>Todas</span>
-        </a>
-        <a href="#">
-          <img src="../../assets/images/checklist.svg" alt="All Options" />
-          <span>Todas</span>
-        </a>
-        <a href="#">
-          <img src="../../assets/images/checklist.svg" alt="All Options" />
-          <span>Todas</span>
-        </a>
-      </nav>
+      <div class="tips" *ngIf="tabActive">
+        <nav class="hobbies">
+          <a href="#" class="current">
+            <img src="../../assets/images/checklist.svg" alt="All Options" />
+            <span>Todas</span>
+          </a>
+          <a href="#">
+            <img src="../../assets/images/checklist.svg" alt="All Options" />
+            <span>Jardinagem</span>
+          </a>
+          <a href="#">
+            <img src="../../assets/images/checklist.svg" alt="All Options" />
+            <span>Artesanato</span>
+          </a>
+          <a href="#">
+            <img src="../../assets/images/checklist.svg" alt="All Options" />
+            <span>Meditação</span>
+          </a>
+          <a href="#">
+            <img src="../../assets/images/checklist.svg" alt="All Options" />
+            <span>Crochê</span>
+          </a>
+          <a href="#">
+            <img src="../../assets/images/checklist.svg" alt="All Options" />
+            <span>Crochê</span>
+          </a>
+          <a href="#">
+            <img src="../../assets/images/checklist.svg" alt="All Options" />
+            <span>Crochê</span>
+          </a>
+        </nav>
+
+        <ul>
+          <li>
+            <a href="#">
+              <div class="img-container">
+                <img
+                  src="../../assets/images/composting.svg"
+                  alt="Composting"
+                />
+              </div>
+              <div class="tip-desc">
+                <h3>Compostagem</h3>
+                <p>
+                  Carnes não devem entrar na compostagem.
+                </p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="img-container">
+                <img
+                  src="../../assets/images/composting.svg"
+                  alt="Composting"
+                />
+              </div>
+              <div class="tip-desc">
+                <h3>Compostagem</h3>
+                <p>
+                  Carnes não devem entrar na compostagem.
+                </p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="img-container">
+                <img
+                  src="../../assets/images/composting.svg"
+                  alt="Composting"
+                />
+              </div>
+              <div class="tip-desc">
+                <h3>Compostagem</h3>
+                <p>
+                  Carnes não devem entrar na compostagem.
+                </p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="img-container">
+                <img
+                  src="../../assets/images/composting.svg"
+                  alt="Composting"
+                />
+              </div>
+              <div class="tip-desc">
+                <h3>Compostagem</h3>
+                <p>
+                  Carnes não devem entrar na compostagem.
+                </p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="img-container">
+                <img
+                  src="../../assets/images/composting.svg"
+                  alt="Composting"
+                />
+              </div>
+              <div class="tip-desc">
+                <h3>Compostagem</h3>
+                <p>
+                  Carnes não devem entrar na compostagem.
+                </p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="img-container">
+                <img
+                  src="../../assets/images/composting.svg"
+                  alt="Composting"
+                />
+              </div>
+              <div class="tip-desc">
+                <h3>Compostagem</h3>
+                <p>
+                  Carnes não devem entrar na compostagem.
+                </p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
     </article>
   </div>
-</sections>
+</section>

@@ -1,0 +1,69 @@
+@import "../../../assets/styles/colors.scss";
+
+.the-alert-wapper {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  overflow-y: auto;
+  opacity: 1;
+  transition: 0.3s ease-in-out;
+
+  .the-alert {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition: 0.3s ease-in-out;
+  }
+
+  &.the-alert--hidden {
+    visibility: hidden;
+    opacity: 0;
+
+    .the-alert {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+  }
+}
+
+.the-alert {
+  background-color: #ffffff;
+  width: 500px;
+  max-width: 90vw;
+  height: auto;
+  padding: 25px 0;
+  margin: 40px 0 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.the-alert-body {
+  text-align: center;
+  padding: 0 50px;
+
+  img {
+    display: block;
+    width: 60px;
+    margin: 0 auto 10px;
+  }
+
+  h3 {
+    font-size: 22px;
+    color: $color-green;
+    font-weight: 500;
+    margin: 0 0 20px;
+  }
+}
+
+.the-alert-footer {
+  width: 300px;
+  margin: 20px auto 0;
+}

@@ -1,0 +1,51 @@
+.avatar {
+  margin-top: 30px;
+
+  span {
+    display: block;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 0 10px;
+  }
+
+  small {
+    display: block;
+    font-size: 15px;
+    color: #c00;
+    margin: 5px 0 0;
+  }
+
+  input {
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+
+    & + div {
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      img {
+        display: block;
+      }
+
+      & + span {
+        font-size: 18px;
+        margin: 10px 0 0;
+      }
+    }
+  }
+
+  &:hover {
+    input + div {
+      background: #f0f0f0;
+    }
+  }
+}

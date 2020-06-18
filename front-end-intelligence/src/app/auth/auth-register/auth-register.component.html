@@ -2,79 +2,121 @@
   <div class="wrapper">
     <img src="../../../assets/images/logo.svg" alt="" />
 
-    <h1>Cadastro</h1>
-    <form action="" method="post" id="register_form" [formGroup]="registerForm">
-      <label>
-        <span>Nome:</span>
-        <input
-          type="text"
-          name="name"
-          [(ngModel)]="objectData.name"
-          formControlName="name"
-          required
-        />
-        <small *ngIf="getFieldError('name')">{{ getFieldError("name") }}</small>
-      </label>
+    <form action="" method="post" id="register_form">
+      <div
+        class="passo"
+        [ngClass]="{
+          visible: step === 0
+        }"
+        [formGroup]="registerForm"
+      >
+        <h2>Cadastro</h2>
 
-      <label>
-        <span>Sobrenome:</span>
-        <input
-          type="text"
-          name="lastname"
-          [(ngModel)]="objectData.lastname"
-          formControlName="lastname"
-          required
-        />
-        <small *ngIf="getFieldError('lastname')">{{
-          getFieldError("lastname")
-        }}</small>
-      </label>
+        <label>
+          <span>Nome:</span>
+          <input
+            type="text"
+            name="name"
+            [(ngModel)]="objectData.name"
+            formControlName="name"
+            required
+          />
+          <small *ngIf="validField('name')">{{ validField("name") }}</small>
+        </label>
 
-      <!-- <label>
-        <span>Celular:</span>
-        <input
-          type="text"
-          name="cell"
-          [(ngModel)]="objectData.cell"
-          formControlName="cell"
-          mask="(00) 00000-0000"
-          [validation]="true"
-          required
-        />
-        <small *ngIf="getFieldError('cell')">{{ getFieldError("cell") }}</small>
-      </label> -->
+        <label>
+          <span>Sobrenome:</span>
+          <input
+            type="text"
+            name="lastname"
+            [(ngModel)]="objectData.lastname"
+            formControlName="lastname"
+            required
+          />
+          <small *ngIf="validField('lastname')">{{
+            validField("lastname")
+          }}</small>
+        </label>
 
-      <label>
-        <span>Senha:</span>
-        <input
-          type="password"
-          name="password"
-          [(ngModel)]="objectData.password"
-          formControlName="password"
-          required
-        />
-        <small *ngIf="getFieldError('password')">{{
-          getFieldError("password")
-        }}</small>
-      </label>
+        <label>
+          <span>Senha:</span>
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="objectData.password"
+            formControlName="password"
+            required
+          />
+          <small *ngIf="validField('password')">{{
+            validField("password")
+          }}</small>
+        </label>
 
-      <label>
-        <span>Confirme a Senha:</span>
-        <input
-          type="password"
-          name="confirm_password"
-          [(ngModel)]="objectData.confirm_password"
-          formControlName="confirm_password"
-          required
-        />
-        <small *ngIf="getFieldError('confirm_password')">{{
-          getFieldError("confirm_password")
-        }}</small>
-      </label>
+        <label>
+          <span>Confirme a Senha:</span>
+          <input
+            type="password"
+            name="confirm_password"
+            [(ngModel)]="objectData.confirm_password"
+            formControlName="confirm_password"
+            required
+          />
+          <small *ngIf="validField('confirm_password')">{{
+            validField("confirm_password")
+          }}</small>
+        </label>
 
-      <button type="submit" (click)="handleRegisterUser()">
-        Próximo passo
-      </button>
+        <button type="button" (click)="handleStep(1)">
+          Próximo passo
+        </button>
+
+        <p>Já possui conta? <a href="#">Clique aqui</a></p>
+      </div>
+
+      <div
+        class="passo"
+        [ngClass]="{
+          visible: step === 1
+        }"
+        [formGroup]="stepTwoForm"
+      >
+        <h2>Verificação</h2>
+
+        <label>
+          <span>Celular:</span>
+          <input
+            type="text"
+            name="cellphone"
+            [(ngModel)]="objectData.cellphone"
+            formControlName="cellphone"
+            mask="00 00000-0000"
+            [showMaskTyped]="true"
+            [validation]="true"
+            required
+          />
+          <small *ngIf="validField('cellphone')">{{
+            validField("cellphone")
+          }}</small>
+        </label>
+
+        <app-app-file-upload formControlName="avatar"> </app-app-file-upload>
+
+        <button type="submit" (click)="handleRegisterUser()">
+          Próximo passo
+        </button>
+
+        <p><a href="javascript:void(0)" (click)="handleStep(0)">Voltar</a></p>
+      </div>
     </form>
   </div>
 </div>
+
+<app-alert
+  #errorAlert
+  header="Ops!"
+  icon="attention"
+  textButton="Tentar novamente"
+  (onInteract)="onAlertInteract($event)"
+>
+  <p>{{ errorMessage }}</p>
+</app-alert>

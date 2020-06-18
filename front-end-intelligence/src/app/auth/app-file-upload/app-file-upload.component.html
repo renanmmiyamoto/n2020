@@ -1,0 +1,10 @@
+<label class="avatar">
+  <span>Adicionar foto</span>
+  <input type="file" name="avatar" required />
+  <div>
+    <img src="../../../assets/images/camera.svg" alt="Camera" />
+  </div>
+  <span>{{
+    file ? file.name : "Clique na camera para adicionar sua foto"
+  }}</span>
+</label>
