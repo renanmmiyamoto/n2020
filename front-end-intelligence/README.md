@@ -1,37 +1,27 @@
 # N2020
 
-## Group Data
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
 
-Alfredo Henrique - RM 83993
+## Development server
 
-Gabriel Fellone - RM 82012
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Lais Campitelli - RM 76134
+## Code scaffolding
 
-Leandro Rocha - RM 84378
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Leticia Bora - RM 82071
+## Build
 
-Renan Miyamoto - RM 81348
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## API Data
+## Running unit tests
 
-To this project works fine, have to install and run the server on Laravel.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Getting Started
+## Running end-to-end tests
 
-- Install dependencies of project
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-```
-$ npm install
-or
-$ yarn
-```
+## Further help
 
-- Change in [./src/environments/environment.ts](./src/environments/environment.ts) the api_url value, to the Laravel port on localhost.
-
-- Run serve
-
-```
-$ ng serve
-```
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
