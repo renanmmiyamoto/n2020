@@ -9,19 +9,19 @@
 
       <ul>
         <li>
-          <a href="#" [routerLink]="home" routerLinkActive="active">
+          <a [routerLink]="home" routerLinkActive="active">
             <img />
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="#" [routerLink]="atividades" routerLinkActive="active">
+          <a [routerLink]="atividades" routerLinkActive="active">
             <img />
             <span>Atividades</span>
           </a>
         </li>
         <li>
-          <a href="#" [routerLink]="perfil" routerLinkActive="active">
+          <a [routerLink]="perfil" routerLinkActive="active">
             <img />
             <span>Perfil</span>
           </a>
@@ -30,14 +30,12 @@
     </nav>
 
     <div>
-      <div class="notifications">
-        <a href="#">
-          <img src="../../../assets/images/messages.svg" alt="Messages" />
-        </a>
-      </div>
-      <a href="#" class="perfil">
+      <a href="javascript:void(0)" class="perfil">
         <img src="../../../assets/images/avatar.svg" alt="Avatar" />
-        <span>Douglas Cabral</span>
+        <span>{{ nome }}</span>
+      </a>
+      <a href="javascript:void(0)" class="logout" (click)="logout()">
+        <img src="../../../assets/images/logout.svg" alt="Logout" />
       </a>
     </div>
   </div>

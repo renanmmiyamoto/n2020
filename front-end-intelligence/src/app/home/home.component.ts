@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { HobbiesService } from '../services/hobbies.service';
 import { AlertComponent } from '../shared/alert/alert.component';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,31 +10,39 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public tabActive: boolean = true;
+  public tabActive: 'dicas' | 'duvidas' = 'dicas';
   public errorMessage: string = '';
   public hobbies: string[] = [];
-
-  public tipId: string = '';
+  public loaded: boolean = false;
+  public hobbieDoubtActive: string = '';
+  public hobbieId: string = '';
 
   @ViewChild('errorAlert', { static: false })
   public errorAlert: AlertComponent;
 
   constructor(
     private hobbiesService: HobbiesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.getHobbies();
 
     this.route.params.subscribe((param) => {
-      if (param.tipId) this.tipId = param.tipId;
+      if (param.hobbieId) this.hobbieId = param.hobbieId;
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.router.url.indexOf('duvidas') != -1) this.tabActive = 'duvidas';
+    else this.tabActive = 'dicas';
+  }
 
-  changeTab(tab: boolean) {
+  changeTab(tab: 'dicas' | 'duvidas') {
     this.tabActive = tab;
-    console.log(this.tabActive);
+  }
+
+  chagenHobbieDoubt(hobbieId: string) {
+    this.hobbieDoubtActive = hobbieId;
   }
 
   setAlertError(msg: string) {
@@ -45,13 +54,20 @@ export class HomeComponent implements OnInit {
     try {
       let res = await this.hobbiesService.hobbies();
 
-      console.log(res);
-
       this.hobbies = res;
-    } catch (error) {
-      console.log('error', error);
 
+      console.log(this.hobbies);
+
+      setTimeout(() => {
+        this.loaded = true;
+      }, 2000);
+    } catch (error) {
       this.setAlertError('Não foi possível carregar os hobbies');
     }
+  }
+
+  onAlertInteract(confirmed) {
+    this.errorAlert.setStatus(false);
+    this.loaded = true;
   }
 }

@@ -1,37 +1,119 @@
 <section class="home">
   <div class="wrapper">
     <nav class="tabs">
-      <a href="#" class="current" (click)="changeTab(true)">
+      <a
+        href="javascript:void(0)"
+        [ngClass]="{ current: tabActive == 'dicas' }"
+        (click)="changeTab('dicas')"
+      >
         Dicas
       </a>
-      <a href="#" (click)="changeTab(false)">
+      <a
+        href="javascript:void(0)"
+        [ngClass]="{ current: tabActive == 'duvidas' }"
+        (click)="changeTab('duvidas')"
+      >
         Dúvidas
       </a>
     </nav>
 
-    <article class="tab-content">
-      <div class="tips" *ngIf="tabActive">
+    <article class="tab-content current" *ngIf="!loaded">
+      <div class="loading">
+        <small>Carregando informações...</small>
+
         <nav class="hobbies">
-          <a href="#" [ngClass]="{ current: tipId == '' }">
-            <img src="../../assets/images/checklist.svg" alt="All Options" />
-            <span>Todas</span>
-          </a>
-          <a
-            href="/{{ hobbie.id }}"
-            *ngFor="let hobbie of hobbies"
-            [ngClass]="{ current: tipId == hobbie.id }"
-          >
-            <img
-              src="../../assets/images/checklist.svg"
-              alt="{{ hobbie.nome }}"
-            />
-            <span>{{ hobbie.nome }}</span>
-          </a>
+          <a href="javascript:void(0)"></a>
+          <a href="javascript:void(0)"></a>
+          <a href="javascript:void(0)"></a>
+          <a href="javascript:void(0)"></a>
+          <a href="javascript:void(0)"></a>
         </nav>
 
-        <ul *ngIf="tipId == '' || tipId == 1">
+        <ul>
           <li>
-            <a href="#">
+            <a href="javascript:void(0)">
+              <div class="img-container"></div>
+              <div>
+                <h3></h3>
+                <p></p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="img-container"></div>
+              <div>
+                <h3></h3>
+                <p></p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="img-container"></div>
+              <div>
+                <h3></h3>
+                <p></p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="img-container"></div>
+              <div>
+                <h3></h3>
+                <p></p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="img-container"></div>
+              <div>
+                <h3></h3>
+                <p></p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div class="img-container"></div>
+              <div>
+                <h3></h3>
+                <p></p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="tab-content" *ngIf="loaded">
+      <nav class="hobbies">
+        <a
+          href="/{{ tabActive }}/hobbie/0"
+          [ngClass]="{ current: hobbieId == '0' }"
+        >
+          <img src="../../assets/images/checklist.svg" alt="All Options" />
+          <span>Todas</span>
+        </a>
+        <a
+          href="/{{ tabActive }}/hobbie/{{ hobbie.id }}"
+          *ngFor="let hobbie of hobbies"
+          [ngClass]="{ current: hobbieId == hobbie.id }"
+        >
+          <img
+            src="../../assets/images/checklist.svg"
+            alt="{{ hobbie.nome }}"
+          />
+          <span>{{ hobbie.nome }}</span>
+        </a>
+      </nav>
+
+      <div class="content tips" [ngClass]="{ current: tabActive == 'dicas' }">
+        <ul *ngIf="hobbieId == '0' || hobbieId == '1'">
+          <li>
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -47,7 +129,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -63,7 +145,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -79,7 +161,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -95,7 +177,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -111,7 +193,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -128,9 +210,9 @@
           </li>
         </ul>
 
-        <ul *ngIf="tipId == '' || tipId == 2">
+        <ul *ngIf="hobbieId == '0' || hobbieId == '2'">
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -147,7 +229,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -164,7 +246,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -181,7 +263,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -198,7 +280,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -215,7 +297,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="dicas/1">
               <div class="img-container">
                 <img
                   src="../../assets/images/composting.svg"
@@ -233,11 +315,44 @@
           </li>
         </ul>
 
-        <div class="empty" *ngIf="tipId != '' && tipId != 1 && tipId != 2">
+        <div
+          class="empty"
+          *ngIf="hobbieId != '0' && hobbieId != '1' && hobbieId != '2'"
+        >
           <p>
             Desculpe, mas não existem dicas para esse hobbie cadastradas.
           </p>
         </div>
+      </div>
+
+      <div
+        class="content doubts"
+        [ngClass]="{ current: tabActive == 'duvidas' }"
+      >
+        <ul>
+          <li>
+            <a href="javascript:void(0)">
+              <div class="img-container">
+                <img src="../../assets/images/avatar.svg" alt="Avatar" />
+              </div>
+              <div>
+                <span>Andrey Masiero</span>
+                <h3>Matei a suculenta</h3>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <div class="img-container">
+                <img src="../../assets/images/avatar-2.svg" alt="Avatar" />
+              </div>
+              <div>
+                <span>Gabriela Salmomão</span>
+                <h3>Dúvida sobre jardinagem</h3>
+              </div>
+            </a>
+          </li>
+        </ul>
       </div>
     </article>
   </div>

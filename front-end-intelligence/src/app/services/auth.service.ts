@@ -13,8 +13,8 @@ export class AuthService {
 
   // Função que efetua o login
   login(data): Promise<any> {
-    let endpoint = `${this.apiUrl}/auth/sign-in`;
-    return this.httpClient.post(endpoint, data).toPromise();
+    let endpoint = `${this.apiUrl}/auth/celular/${data.celular}/pass/${data.senha}`;
+    return this.httpClient.get(endpoint).toPromise();
   }
 
   setLoggedUser(userData) {
@@ -28,8 +28,11 @@ export class AuthService {
       let userData = JSON.parse(userDataString);
       return userData;
     } catch (error) {
-      console.log(error);
       return null;
     }
+  }
+
+  removeLoggedUser() {
+    localStorage.removeItem('loggedUser');
   }
 }

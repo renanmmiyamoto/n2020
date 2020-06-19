@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,21 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::group(array('prefix' => 'api'), function()
-{
+  Route::group(array('prefix' => 'api'), function () {
 
   Route::get('/', function () {
-      return response()->json(['message' => 'N2020 API', 'status' => 'Connected']);;
+    return response()->json(['message' => 'N2020 API', 'status' => 'Connected']);;
   });
 
   Route::resource('hobbies', 'HobbiesController');
   Route::resource('usuarios', 'UsuariosController');
+
 });
 
-Route::get('/', function () {
-    return redirect('api');
-});
+ // Route::get('auth/{celular}/pass/{senha}','UsuariosController@show');
+
+  Route::get('auth/celular/{celular}/pass/{senha}', function($celular, $senha) {
+    return UsuariosController::auth($celular, $senha);
+ });

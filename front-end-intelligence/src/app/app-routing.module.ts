@@ -5,23 +5,10 @@ import { AuthRegisterComponent } from './auth/auth-register/auth-register.compon
 import { BodyComponent } from './page-layout/body/body.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth.guard';
+import { TipsComponent } from './tips/tips.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: BodyComponent,
-    // canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        component: HomeComponent,
-      },
-      {
-        path: ':tipId',
-        component: HomeComponent,
-      },
-    ],
-  },
   {
     path: 'login',
     component: AuthLoginComponent,
@@ -29,6 +16,27 @@ const routes: Routes = [
   {
     path: 'register',
     component: AuthRegisterComponent,
+  },
+  {
+    path: '',
+    component: BodyComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'dicas/hobbie/0', pathMatch: 'full' },
+      {
+        path: 'dicas/hobbie/:hobbieId',
+        component: HomeComponent,
+      },
+      {
+        path: 'duvidas/hobbie/:hobbieId',
+        component: HomeComponent,
+      },
+      {
+        path: 'dicas/:tipId',
+        component: TipsComponent,
+      },
+      { path: '**', component: NotfoundComponent },
+    ],
   },
 ];
 

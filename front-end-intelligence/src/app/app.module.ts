@@ -9,9 +9,11 @@ import { PageLayoutModule } from './page-layout/page-layout.module';
 import { HomeModule } from './home/home.module';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth.guard';
+import { TipsComponent } from './tips/tips.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TipsComponent, NotfoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

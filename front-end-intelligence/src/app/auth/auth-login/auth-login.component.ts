@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { RegisterService } from '../../services/register.service';
+import { AuthService } from '../../services/auth.service';
+import { AlertComponent } from 'src/app/shared/alert/alert.component';
 
 @Component({
   selector: 'app-auth-login',
@@ -13,8 +14,12 @@ export class AuthLoginComponent implements OnInit {
   public loginForm: FormGroup;
   public objectData: any = {};
   public disabledForm: boolean = true;
+  public errorMessage: string = '';
 
-  constructor(private authService: RegisterService, private router: Router) {
+  @ViewChild('errorAlert', { static: false })
+  public errorAlert: AlertComponent;
+
+  constructor(private authService: AuthService, private router: Router) {
     this.loginForm = new FormGroup({
       cell: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -37,23 +42,34 @@ export class AuthLoginComponent implements OnInit {
 
   async handleLoginUser() {
     if (!this.loginForm.valid) {
-      alert('Preencha os campos corretamente.');
+      this.setAlertError('Preencha os campos corretamente.');
       return;
     }
 
-    let formValue = this.loginForm.value;
+    let formValue = {
+      celular: this.loginForm.value.cell,
+      senha: this.loginForm.value.password,
+    };
 
-    /* try {
-      let res = await this.authService.register(formValue);
+    try {
+      let res = await this.authService.login(formValue);
 
-      console.log('res', res);
+      this.authService.setLoggedUser(res[0]);
+      this.router.navigate(['/dicas/hobbie/0']);
     } catch (error) {
-      console.log('error', error);
-
-      alert(
+      this.setAlertError(
         'Não foi possível efeturar login. Verifique os dados e tente novamente.'
       );
-    } */
+    }
+  }
+
+  setAlertError(msg: string) {
+    this.errorAlert.setStatus(true);
+    this.errorMessage = msg;
+  }
+
+  onAlertInteract(confirmed) {
+    this.errorAlert.setStatus(false);
   }
 
   ngOnInit(): void {}

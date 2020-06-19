@@ -22,11 +22,18 @@ export class AuthRegisterComponent implements OnInit {
   public disabledForm: boolean = true;
   public step: number = 0;
   public errorMessage: string = '';
+  public successMessage: string = '';
 
   @ViewChild('errorAlert', { static: false })
   public errorAlert: AlertComponent;
 
-  constructor(private authService: RegisterService, private router: Router) {
+  @ViewChild('successAlert', { static: false })
+  public successAlert: AlertComponent;
+
+  constructor(
+    private registerService: RegisterService,
+    private router: Router
+  ) {
     this.registerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
@@ -90,6 +97,11 @@ export class AuthRegisterComponent implements OnInit {
     this.errorMessage = msg;
   }
 
+  setAlertSuccess(msg: string) {
+    this.successAlert.setStatus(true);
+    this.successMessage = msg;
+  }
+
   async handleRegisterUser() {
     if (!this.registerForm.valid || !this.stepTwoForm.valid) {
       this.setAlertError('Preencha os campos corretamente.');
@@ -98,31 +110,32 @@ export class AuthRegisterComponent implements OnInit {
 
     let formValue = {
       nome:
-        this.registerForm.value.name + '' + this.registerForm.value.lastname,
+        this.registerForm.value.name + ' ' + this.registerForm.value.lastname,
       senha: this.registerForm.value.password,
       celular: Number(this.stepTwoForm.value.cellphone),
       foto: 'avatar.jpg',
     };
 
     try {
-      console.log({ formValue });
+      let res = await this.registerService.register(formValue);
 
-      let res = await this.authService.register(formValue);
-
-      console.log('res', res);
+      this.setAlertSuccess('Registro realizado com sucesso!');
     } catch (error) {
-      console.log('error', error);
-
-      this.setAlertError(
-        'Não foi possível efeturar login. Verifique os dados e tente novamente.'
-      );
+      if (error?.error?.message?.indexOf('Duplicate entry') != -1)
+        this.setAlertError('Já existe um usuário com esse número!');
+      else
+        this.setAlertError(
+          'Não foi possível efeturar o registro. Verifique os dados e tente novamente.'
+        );
     }
   }
 
   onAlertInteract(confirmed) {
-    if (confirmed) console.log('confirmed');
-    else console.log('canceled');
-
     this.errorAlert.setStatus(false);
+  }
+
+  onAlertSuccessInteract(confirmed) {
+    this.successAlert.setStatus(false);
+    this.router.navigate(['login']);
   }
 }

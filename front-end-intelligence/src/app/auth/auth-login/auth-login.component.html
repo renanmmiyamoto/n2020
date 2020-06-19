@@ -4,7 +4,7 @@
 
     <h1>Entrar</h1>
 
-    <form action="" method="post">
+    <form action="" method="post" [formGroup]="loginForm">
       <label>
         <span>Seu telefone:</span>
         <input
@@ -31,12 +31,28 @@
         <small *ngIf="getFieldError('password')">{{
           getFieldError("password")
         }}</small>
-        <a href="#">Esqueci a senha</a>
+        <a href="javascript:void(0)">Esqueci a senha</a>
       </label>
 
-      <button type="submit" (click)="handleLoginUser()">Entrar</button>
+      <button
+        type="submit"
+        (click)="handleLoginUser()"
+        [disabled]="loginForm.invalid"
+      >
+        Entrar
+      </button>
 
       <p>Não tem uma conta? <a href="/register">clique aqui</a></p>
     </form>
   </div>
 </div>
+
+<app-alert
+  #errorAlert
+  header="Ops!"
+  icon="attention"
+  textButton="Tentar novamente"
+  (onInteract)="onAlertInteract($event)"
+>
+  <p>{{ errorMessage }}</p>
+</app-alert>

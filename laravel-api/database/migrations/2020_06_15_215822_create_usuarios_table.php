@@ -17,7 +17,7 @@ class CreateUsuariosTable extends Migration
             $table->increments('id');
             $table->string('nome', 100);
             $table->string('senha', 60);
-            $table->string('celular');
+            $table->string('celular')->unique();
             $table->string('foto');
             $table->timestamps();
             $table->softDeletes();

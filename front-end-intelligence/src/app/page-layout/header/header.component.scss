@@ -76,18 +76,16 @@ header {
       align-items: center;
       justify-content: flex-end;
 
-      .notifications {
-        a {
-          background: rgba(255, 255, 255, 0.4);
-          display: block;
-          padding: 10px;
-          margin: 0 20px 0 0;
-          border-radius: 50%;
+      a.logout {
+        background: rgba(255, 255, 255, 0.4);
+        display: block;
+        padding: 10px;
+        margin: 0 0 0 20px;
+        border-radius: 50%;
 
-          img {
-            display: block;
-            width: 25px;
-          }
+        img {
+          display: block;
+          width: 25px;
         }
       }
 

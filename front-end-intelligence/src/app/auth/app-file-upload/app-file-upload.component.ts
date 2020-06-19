@@ -27,7 +27,6 @@ export class AppFileUploadComponent implements OnInit {
 
   @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
     const file = event && event.item(0);
-    console.log(file);
     this.onChange(file);
     this.file = file;
   }

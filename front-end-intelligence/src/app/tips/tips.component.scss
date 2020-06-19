@@ -1,0 +1,31 @@
+.hero {
+  background: url("../../assets/images/compostagem.jpg") center center no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 350px;
+  margin: 0 0 70px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 0 100px;
+
+  h2 {
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 30px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: justify;
+
+    & + p {
+      margin-top: 15px;
+    }
+  }
+}

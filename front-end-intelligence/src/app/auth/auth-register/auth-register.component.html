@@ -66,11 +66,15 @@
           }}</small>
         </label>
 
-        <button type="button" (click)="handleStep(1)">
+        <button
+          type="button"
+          (click)="handleStep(1)"
+          [disabled]="registerForm.invalid"
+        >
           Próximo passo
         </button>
 
-        <p>Já possui conta? <a href="#">Clique aqui</a></p>
+        <p>Já possui conta? <a href="login">Clique aqui</a></p>
       </div>
 
       <div
@@ -101,7 +105,11 @@
 
         <app-app-file-upload formControlName="avatar"> </app-app-file-upload>
 
-        <button type="submit" (click)="handleRegisterUser()">
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid || stepTwoForm.invalid"
+          (click)="handleRegisterUser()"
+        >
           Próximo passo
         </button>
 
@@ -119,4 +127,13 @@
   (onInteract)="onAlertInteract($event)"
 >
   <p>{{ errorMessage }}</p>
+</app-alert>
+
+<app-alert
+  #successAlert
+  icon="success"
+  textButton="Entrar no site"
+  (onInteract)="onAlertSuccessInteract($event)"
+>
+  <p>{{ successMessage }}</p>
 </app-alert>
