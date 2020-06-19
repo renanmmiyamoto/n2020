@@ -10,10 +10,14 @@ const routes: Routes = [
   {
     path: '',
     component: BodyComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: '',
+        component: HomeComponent,
+      },
+      {
+        path: ':tipId',
         component: HomeComponent,
       },
     ],

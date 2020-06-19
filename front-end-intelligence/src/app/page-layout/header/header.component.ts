@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  public home: string = '/';
+  public atividades: string = '/atividades';
+  public perfil: string = '/perfil';
+
   constructor() {}
 
   ngOnInit(): void {}
